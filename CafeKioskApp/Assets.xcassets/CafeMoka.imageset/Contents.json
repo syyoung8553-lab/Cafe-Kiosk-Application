@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "cafemoka.jpeg",
       "idiom" : "universal"
     }
   ],
