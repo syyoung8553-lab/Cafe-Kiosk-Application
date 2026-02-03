@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
+    
+    let label = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,12 @@ class ViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .white
+        
+        label.text = "스파르타 카페"
+        label.textColor = .black
+        label.textAlignment = .center
+        
+        label.addSubview(label)
         
     }
 }
