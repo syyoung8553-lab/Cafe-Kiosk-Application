@@ -5,6 +5,7 @@
 //  Created by ios on 2/3/26.
 //
 
+// 키오스크 만들기.
 import UIKit
 import SnapKit
 
