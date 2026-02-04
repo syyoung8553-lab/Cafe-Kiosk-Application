@@ -9,9 +9,9 @@ import Foundation
 
 struct Category {
     
-    let image: String // 이미지
-    let menu: String // 메뉴
-    let price: String // 가격
+    let image: String // 이미지.
+    let menu: String // 메뉴.
+    let price: String // 가격.
 }
 
 extension Category {
