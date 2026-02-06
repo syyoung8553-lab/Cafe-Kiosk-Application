@@ -5,7 +5,6 @@
 // 2026.02.03 ~ 2026.02.06
 //
 
-
 // 키오스크 앱 만들기.
 import UIKit
 import SnapKit
@@ -372,7 +371,7 @@ final class ViewController: UIViewController {
         let total = totalPrice()
         let alert = UIAlertController(
             title: "결제 완료",
-            message: "결제금액: \(formatWon(total))\n주문이 완료되었습니다",
+            message: "결제금액: \(formatWon(total))\n주문이 완료되었습니다.",
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
