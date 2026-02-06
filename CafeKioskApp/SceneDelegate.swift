@@ -8,18 +8,25 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
+    // 윈도우 : 앱에 반드시 한 개는 필요한 가장 근본이 되는 뷰. 이 위에 뷰가 쌓이기 시작.
     var window: UIWindow?
 
-
+    // 앱을 시작할 때 세팅해줄 코드들을 작성해주는 곳.
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+      
+        // UIWindowScene 객체 생성.
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
+        // 윈도우에게 루트 뷰 컨트롤러 지정.
         window.rootViewController = ViewController()
+        
+        // 이 메서드를 반드시 작성해줘야만 윈도우가 활성화가 됨.
         window.makeKeyAndVisible()
         
         self.window = window
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

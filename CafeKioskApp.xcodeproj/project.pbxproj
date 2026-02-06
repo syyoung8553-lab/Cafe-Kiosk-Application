@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		817A1CE82F3208FA0011E9DD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 817A1CE72F3208FA0011E9DD /* SnapKit */; };
+		99243E772F31BDDE00FF916A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 99243E762F31BDDE00FF916A /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				817A1CE82F3208FA0011E9DD /* SnapKit in Frameworks */,
+				99243E772F31BDDE00FF916A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			);
 			name = CafeKioskApp;
 			packageProductDependencies = (
-				817A1CE72F3208FA0011E9DD /* SnapKit */,
+				99243E762F31BDDE00FF916A /* SnapKit */,
 			);
 			productName = CafeKioskApp;
 			productReference = 817A1C7E2F31A2870011E9DD /* CafeKioskApp.app */;
@@ -114,7 +114,7 @@
 			mainGroup = 817A1C752F31A2870011E9DD;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				817A1CE62F3208FA0011E9DD /* XCRemoteSwiftPackageReference "SnapKit" */,
+				99243E752F31BDDE00FF916A /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 817A1C7F2F31A2870011E9DD /* Products */;
@@ -158,9 +158,10 @@
 				INFOPLIST_FILE = CafeKioskApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -189,9 +190,10 @@
 				INFOPLIST_FILE = CafeKioskApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -352,7 +354,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		817A1CE62F3208FA0011E9DD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		99243E752F31BDDE00FF916A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -363,9 +365,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		817A1CE72F3208FA0011E9DD /* SnapKit */ = {
+		99243E762F31BDDE00FF916A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 817A1CE62F3208FA0011E9DD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 99243E752F31BDDE00FF916A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

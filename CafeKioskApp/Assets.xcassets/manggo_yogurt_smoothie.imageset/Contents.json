@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "manggo_yogurt_smoothie.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
