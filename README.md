@@ -11,11 +11,23 @@
 <img width="287" height="616" alt="image" src="https://github.com/user-attachments/assets/2f69427e-f4e4-4a02-8ec3-a34d3b1720ed" />
 
 
-## ✅ 각 화면병 영역 구분
+## ✅ 각 화면별 영역 구분
 
 ① 메뉴 선택 영역
+  - 카테고리(SegmentedControl)로 커피 / 스무디 / 디저트 분리
+  - CollectionView를 사용해 2×2 메뉴 배치
+  - 메뉴 선택 시 장바구니에 자동 추가
+
 ② 장바구니 영역
+  - TableView로 주문 내역 표시
+  - - / + 버튼으로 수량 조절
+  - 수량 0이 되면 자동 삭제
+  - 장바구니가 비어 있으면 안내 문구 표시
 ③ 결제 영역
+  - 총 주문 금액 실시간 계산
+  - 취소하기 버튼 → 확인 Alert 후 전체 삭제
+  - 결제하기 버튼 → 결제 완료 Alert 표시
+
 
 ## AI 활용
 
