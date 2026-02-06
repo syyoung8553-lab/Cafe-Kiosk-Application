@@ -2,25 +2,20 @@
 //  ViewController.swift
 //  KioskApp
 //
-//  ✅ 포함 기능
-//  - 상단 SegmentedControl(커피/스무디/디저트)
-//  - 메뉴 2열 CollectionView
-//  - 장바구니(비었을 때 안내문 / 담겼을 때 TableView)
-//  - 총 주문금액 표시
-//  - 취소하기(확인 Alert 후 전체 삭제)
-//  - 결제하기(결제 완료 Alert 후 전체 삭제)
-//  - OrderCell 등록 오류 해결: OrderCell은 반드시 UITableViewCell 상속 + static id 제공
+// 2026.02.03 ~ 2026.02.06
 //
 
+
+// 키오스크 앱 만들기.
 import UIKit
 import SnapKit
 
 final class ViewController: UIViewController {
 
-    // MARK: - Top
+    // MARK: - 제목 부분 구현.
     private let titleLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "🏡 스파르타 카페"
+        lb.text = "Always~Lovely"
         lb.font = .systemFont(ofSize: 24, weight: .bold)
         lb.textAlignment = .center
         return lb
@@ -48,7 +43,7 @@ final class ViewController: UIViewController {
         return seg
     }()
 
-    // MARK: - Menu (Collection)
+    // MARK: - 메뉴 화면 구현(컬렉션 뷰).
     private lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: makeLayout())
         cv.backgroundColor = .white
@@ -58,7 +53,7 @@ final class ViewController: UIViewController {
         return cv
     }()
 
-    // MARK: - Cart (Container + Table)
+    // MARK: - 주문 내역 화면 구현(컨테이너 + 테이블 뷰).
     private let cartContainer: UIView = {
         let v = UIView()
         v.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
@@ -92,20 +87,20 @@ final class ViewController: UIViewController {
         return lb
     }()
 
-    // ✅ 여기에서 오류났던 register는, OrderCell이 UITableViewCell 상속 + id가 있어야 정상
+    // 여기에서 오류났던 register는, OrderCell이 UITableViewCell 상속 + id가 있어야 정상
     private lazy var orderTableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
         tv.dataSource = self
         tv.separatorStyle = .singleLine
         tv.tableFooterView = UIView()
-        tv.register(OrderCell.self, forCellReuseIdentifier: OrderCell.id) // ✅ 정상
+        tv.register(OrderCell.self, forCellReuseIdentifier: OrderCell.id) // 정상
         tv.rowHeight = 70
         tv.backgroundColor = .clear
         tv.showsVerticalScrollIndicator = true
         return tv
     }()
 
-    // MARK: - Bottom (Total + Buttons) ✅ 버튼은 맨 밑
+    // MARK: - 총 주문금액 / 취소 / 결제 버튼 화면 구현.
     private let bottomContainer: UIView = {
         let v = UIView()
         v.backgroundColor = .clear
@@ -149,7 +144,7 @@ final class ViewController: UIViewController {
         return bt
     }()
 
-    // MARK: - Data
+    // MARK: - 메뉴 데이터
     struct MenuItem {
         let name: String
         let imageName: String?
@@ -162,10 +157,10 @@ final class ViewController: UIViewController {
     }
 
     private let coffeeMenus: [MenuItem] = [
-        .init(name: "에스프레소", imageName: nil, price: 3000),
-        .init(name: "아메리카노", imageName: nil, price: 3500),
-        .init(name: "카페라떼", imageName: nil, price: 4000),
-        .init(name: "바닐라라떼", imageName: nil, price: 4500)
+        .init(name: "아메리카노", imageName: "amelikano", price: 3500),
+        .init(name: "에스프레소", imageName: "Espresso", price: 3000),
+        .init(name: "카페 라떼", imageName: "cafe latte", price: 4000),
+        .init(name: "바닐라 라떼", imageName: "banilla latte", price: 4500)
     ]
 
     private let smoothieMenus: [MenuItem] = [
@@ -176,10 +171,10 @@ final class ViewController: UIViewController {
     ]
 
     private let dessertMenus: [MenuItem] = [
-        .init(name: "두바이 쫀득 쿠키", imageName: "dubai_cookie", price: 8000),
-        .init(name: "딸기 조각 케이크", imageName: "strawberry_cake", price: 5500),
-        .init(name: "초코 마카롱", imageName: "choco_macaron", price: 3000),
-        .init(name: "햄치즈 샌드위치", imageName: "hamcheese_sandwich", price: 2000)
+        .init(name: "두바이 쫀득 쿠키", imageName: "Dubai Chewy Cookies", price: 8000),
+        .init(name: "햄 치즈 샌드위치", imageName: "Ham Cheese Sandwich", price: 4500),
+        .init(name: "딸기 조각 케이크", imageName: "Strawberry Cake", price: 5500),
+        .init(name: "초콜릿 마카롱", imageName: "Chocolate Macaron", price: 3000)
     ]
 
     private var currentMenus: [MenuItem] = []
@@ -195,7 +190,7 @@ final class ViewController: UIViewController {
         configureCategoryBar()
         configureMenuCollectionView()
 
-        // ✅ bottom 먼저(맨 밑 고정) -> cart가 그 위까지 올라오게
+        // bottom 먼저(맨 밑 고정) -> cart가 그 위까지 올라오게
         configureBottomArea()
         configureCartArea()
 
@@ -206,7 +201,7 @@ final class ViewController: UIViewController {
         updateCartUI()
     }
 
-    // MARK: - UI Setup
+    // MARK: - UI 셋팅.
     private func configureUI() {
         view.backgroundColor = .white
         view.addSubview(titleLabel)
@@ -236,13 +231,13 @@ final class ViewController: UIViewController {
         }
     }
 
-    // ✅ 총 주문금액(윗줄) + 버튼(아랫줄) => bottomContainer는 safeArea bottom에 고정
+    // 총 주문금액(윗줄) + 버튼(아랫줄) => bottomContainer는 safeArea bottom에 고정
     private func configureBottomArea() {
         view.addSubview(bottomContainer)
 
         bottomContainer.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(12) // ✅ 맨 밑
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(12) // 맨 밑
         }
 
         bottomContainer.addSubview(totalTitleLabel)
@@ -264,7 +259,7 @@ final class ViewController: UIViewController {
             $0.leading.equalToSuperview()
             $0.height.equalTo(58)
             $0.trailing.equalTo(bottomContainer.snp.centerX).offset(-8)
-            $0.bottom.equalToSuperview() // ✅ bottomContainer 바닥
+            $0.bottom.equalToSuperview() // bottomContainer 바닥
         }
 
         payButton.snp.makeConstraints {
@@ -276,7 +271,7 @@ final class ViewController: UIViewController {
         }
     }
 
-    // ✅ cart는 bottomContainer 위까지
+    // cart는 bottomContainer 위까지
     private func configureCartArea() {
         view.addSubview(cartContainer)
 
@@ -311,7 +306,7 @@ final class ViewController: UIViewController {
         }
     }
 
-    // MARK: - Layout (2열)
+    // MARK: - 메뉴 화면 구현(2 X 2 배열)
     private func makeLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.5),
@@ -349,13 +344,13 @@ final class ViewController: UIViewController {
         updateCartUI()
     }
 
-    // MARK: - Actions
+    // MARK: - 액션.
     @objc private func categoryChanged() {
         currentMenus = menus(for: categorySegment.selectedSegmentIndex)
         collectionView.reloadData()
     }
 
-    // ✅ 취소하기: 확인 Alert 띄우고 "삭제" 눌렀을 때만 삭제
+    // 취소하기: 확인 Alert 띄우고 "삭제" 눌렀을 때만 삭제
     @objc private func didTapCancel() {
         guard !orderItems.isEmpty else { return }
 
@@ -377,7 +372,7 @@ final class ViewController: UIViewController {
         let total = totalPrice()
         let alert = UIAlertController(
             title: "결제 완료",
-            message: "결제금액: \(formatWon(total))\n주문이 완료되었습니다 ☕️",
+            message: "결제금액: \(formatWon(total))\n주문이 완료되었습니다",
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "확인", style: .default) { [weak self] _ in
@@ -386,7 +381,7 @@ final class ViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    // MARK: - Order Logic
+    // MARK: - 주문 내역 Logic
     private func addMenuToOrder(_ menu: MenuItem) {
         if let idx = orderItems.firstIndex(where: { $0.menu.name == menu.name }) {
             orderItems[idx].quantity += 1
@@ -414,7 +409,7 @@ final class ViewController: UIViewController {
         updateCartUI()
     }
 
-    // MARK: - UI Update
+    // MARK: - UI 업데이트.
     private func updateCartUI() {
         let qtyTotal = totalQuantity()
         cartCountLabel.text = "총 주문내역 \(qtyTotal)개"
@@ -446,7 +441,7 @@ final class ViewController: UIViewController {
     }
 }
 
-// MARK: - CollectionView
+// MARK: - 컬렉션 뷰.
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -467,7 +462,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 }
 
-// MARK: - TableView
+// MARK: - 테이블 뷰.
 extension ViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -484,7 +479,7 @@ extension ViewController: UITableViewDataSource {
         let item = orderItems[indexPath.row]
         cell.configure(name: item.menu.name, price: item.menu.price, quantity: item.quantity)
 
-        // ✅ indexPath 캡처 이슈 방지: row를 고정
+        // indexPath 캡처 이슈 방지: row를 고정
         let row = indexPath.row
         cell.onTapPlus = { [weak self] in self?.increaseQuantity(at: row) }
         cell.onTapMinus = { [weak self] in self?.decreaseQuantity(at: row) }
@@ -493,7 +488,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Menu Cell
+// MARK: - 메뉴의 Cell
 final class MenuCell: UICollectionViewCell {
 
     static let id = "MenuCell"
@@ -527,7 +522,7 @@ final class MenuCell: UICollectionViewCell {
         imageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(14)
             $0.leading.trailing.equalToSuperview().inset(14)
-            $0.height.equalToSuperview().multipliedBy(0.58)
+            $0.height.equalToSuperview().multipliedBy(0.54)
         }
 
         titleLabel.snp.makeConstraints {
@@ -538,7 +533,7 @@ final class MenuCell: UICollectionViewCell {
         priceLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview().inset(10)
-            $0.bottom.lessThanOrEqualToSuperview().inset(12)
+            $0.bottom.lessThanOrEqualToSuperview().inset(10)
         }
     }
 
@@ -563,7 +558,7 @@ final class MenuCell: UICollectionViewCell {
     }
 }
 
-// MARK: - Order Cell  ✅ 반드시 UITableViewCell 상속
+// MARK: - 주문의 Cell은 반드시 UITableViewCell 상속.
 final class OrderCell: UITableViewCell {
 
     static let id = "OrderCell"
